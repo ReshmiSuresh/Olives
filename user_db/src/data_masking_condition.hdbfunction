@@ -1,0 +1,10 @@
+FUNCTION "<namespace>::data_masking_condition" ( INPUT NVARCHAR(3) )
+       RETURNS OUTPUT nvarchar(3) 
+       LANGUAGE SQLSCRIPT 
+       SQL SECURITY DEFINER AS 
+BEGIN 
+/*****************************  
+       Write your function logic 
+ *****************************/ 
+ 	OUTPUT = LEFT(:INPUT, 1) || 'X';
+END;

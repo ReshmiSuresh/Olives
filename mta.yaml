@@ -1,0 +1,53 @@
+ID: Olives
+_schema-version: '2.0'
+version: 0.0.1
+modules:
+  - name: core_db
+    type: hdb
+    path: core_db
+    requires:
+      - name: hdi-container
+        properties:
+          TARGET_CONTAINER: '~{hdi-container-name}'
+      - name: cross-container-service-1
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: ServiceName_1
+          service: '~{the-service-name}'
+      - name: hdi_user_db
+        group: SERVICE_REPLACEMENTS
+        properties:
+          key: hdi_user_service
+          service: '~{user-container-name}'          
+
+  - name: user_db
+    type: hdb
+    path: user_db
+    requires:
+      - name: hdi_user_db
+        properties:
+          TARGET_CONTAINER: '~{user-container-name}'
+
+resources:
+  - name: hdi-container
+    parameters:
+      config:
+        schema: Peaches
+    properties:
+      hdi-container-name: '${service-name}'
+    type: com.sap.xs.hdi-container
+  - name: cross-container-service-1
+    properties:
+      the-service-name: '${service-name}'
+    type: org.cloudfoundry.existing-service
+    parameters:
+      service-name: SFLIGHT
+
+  - name: hdi_user_db
+    parameters:
+       config:
+          schema: PEACHES_USER
+    properties:
+       user-container-name: ${service-name}
+    type: com.sap.xs.hdi-container
+

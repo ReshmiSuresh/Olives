@@ -1,0 +1,23 @@
+{
+  "SFLIGHT": {
+    "target": {
+      "object": "SFLIGHT",
+      "schema": "SFLIGHT",
+      "database": "HDB"
+    }
+  },
+  "SPFLI": {
+    "target": {
+      "object": "SPFLI",
+      "schema": "SFLIGHT",
+      "database": "HDB"
+    }
+  },
+  "SBOOK": {
+    "target": {
+      "object": "SBOOK",
+      "schema": "SFLIGHT",
+      "database": "HDB"
+    }
+  }
+}
